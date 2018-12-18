@@ -1,5 +1,5 @@
 *.class
-*.log
+*.log*
 logs
 target
 /.idea
@@ -8,3 +8,17 @@ target
 /.project
 /.settings
 /RUNNING_PID
+node_modules
+scripts/flow/*/.flowconfig
+*~
+*.pyc
+.grunt
+_SpecRunner.html
+__benchmarks__
+build/
+remote-repo/
+coverage/
+.module-cache
+fixtures/dom/public/react-dom.js
+fixtures/dom/public/react.js
+test/the-files-to-test.generated.js
