@@ -9,8 +9,8 @@ import play.api.mvc._
 class Application @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
 
   def index = Action {
-    val image = "/versionedAssets/images/frontpage.jpg"
-    Ok(views.html.index(SharedMessages.itWorks, image))
+    val imageLocation = "/versionedAssets/images/frontpage.jpg"
+    Ok(views.html.index(SharedMessages.itWorks, imageLocation))
   }
 
 }
