@@ -1,18 +1,13 @@
+//name := """framed"""
+//organization := "com.framed"
+
+//version := "1.0-SNAPSHOT"
 import sbtcrossproject.{crossProject, CrossType}
 
-lazy val commonSettings = Seq(
-  scalaVersion := "2.12.5",
-  organization := "com.framed"
-)
-
-
 lazy val server = (project in file("server")).settings(commonSettings).settings(
-  name := """framed-server""",
-  version := "1.0-SNAPSHOT",
   scalaJSProjects := Seq(client),
   pipelineStages in Assets := Seq(scalaJSPipeline),
   pipelineStages := Seq(digest, gzip),
-
   // triggers scalaJSPipeline when using compile or continuous compilation
   compile in Compile := ((compile in Compile) dependsOn scalaJSPipeline).value,
   libraryDependencies ++= Seq(
@@ -27,7 +22,6 @@ lazy val server = (project in file("server")).settings(commonSettings).settings(
 
 lazy val client = (project in file("client")).settings(commonSettings).settings(
   scalaJSUseMainModuleInitializer := true,
-  version := "1.0-SNAPSHOT",
   libraryDependencies ++= Seq(
     "org.scala-js" %%% "scalajs-dom" % "0.9.5"
   )
@@ -40,6 +34,11 @@ lazy val shared = crossProject(JSPlatform, JVMPlatform)
   .settings(commonSettings)
 lazy val sharedJvm = shared.jvm
 lazy val sharedJs = shared.js
+
+lazy val commonSettings = Seq(
+  scalaVersion := "2.12.5",
+  organization := "com.framed"
+)
 
 // loads the server project at sbt startup
 onLoad in Global := (onLoad in Global).value andThen {s: State => "project server" :: s}
