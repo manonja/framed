@@ -7,10 +7,10 @@ import play.api.mvc._
 
 @Singleton
 class Application @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
+  val indexImageLocation = "/versionedAssets/images/frontpage.jpg"
 
   def index = Action {
-    val imageLocation = "/versionedAssets/images/frontpage.jpg"
-    Ok(views.html.index(SharedMessages.itWorks, imageLocation))
+    Ok(views.html.index(SharedMessages.itWorks, indexImageLocation))
   }
 
 }
